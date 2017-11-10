@@ -1,0 +1,68 @@
+{
+  "name": "styled-components-utils",
+  "version": "1.0.0-beta.4",
+  "description": "Utility functions for Styled Components",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theengineear/styled-components-utils.git"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "rootDir": "",
+    "testMatch": [
+      "<rootDir>/**/*.test.js"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "build": "cross-env BABEL_ENV=build babel ./src --out-dir ./lib --quiet && npm run build:readme",
+    "build:documentation": "jsdoc2md --files src/resolvers/*.js > DOCUMENTATION.md",
+    "build:readme": "cat PRE_README.md > README.md && npm run build:documentation && cat DOCUMENTATION.md >> README.md",
+    "precommit": "lint-staged",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "jest --coverage",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.1",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "jsdoc": "^3.5.5",
+    "jsdoc-to-markdown": "^3.0.1",
+    "lint-staged": "^4.3.0",
+    "prettier": "^1.8.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "chrome": "60"
+          }
+        }
+      ]
+    ],
+    "env": {
+      "build": {
+        "ignore": [
+          "**/*.test.js"
+        ]
+      }
+    }
+  }
+}
