@@ -46,20 +46,28 @@ describe("resolvers", () => {
   describe("map", () => {
     it("returns a value if no resolvers exist", () => {
       const condition = { a: "A", b: "B" };
-      expect(resolvers.map(condition, "a")).toBe("A");
-      expect(resolvers.map(condition, "b")).toBe("B");
+      expect(resolvers.switchMap(condition, "a")).toBe("A");
+      expect(resolvers.switchMap(condition, "b")).toBe("B");
     });
     it("can also accept a value function to be resolved with props", () => {
       const props = { aa: "a", bb: "b" };
       const condition = { a: "A", b: "B" };
-      expect(resolvers.map(condition, resolvers.prop("aa"))(props)).toBe("A");
-      expect(resolvers.map(condition, resolvers.prop("bb"))(props)).toBe("B");
+      expect(resolvers.switchMap(condition, resolvers.prop("aa"))(props)).toBe(
+        "A"
+      );
+      expect(resolvers.switchMap(condition, resolvers.prop("bb"))(props)).toBe(
+        "B"
+      );
     });
     it("can also accept value functions in the condition object", () => {
       const props = { aa: "a", bb: "b", a: "A", b: "B" };
       const condition = { a: resolvers.prop("a"), b: resolvers.prop("b") };
-      expect(resolvers.map(condition, resolvers.prop("aa"))(props)).toBe("A");
-      expect(resolvers.map(condition, resolvers.prop("bb"))(props)).toBe("B");
+      expect(resolvers.switchMap(condition, resolvers.prop("aa"))(props)).toBe(
+        "A"
+      );
+      expect(resolvers.switchMap(condition, resolvers.prop("bb"))(props)).toBe(
+        "B"
+      );
     });
   });
   describe("tern", () => {
