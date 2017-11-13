@@ -38,12 +38,6 @@ which accepts a value to resolve later.</p>
 are strings, a string is returned. Otherwise, a function is returned that
 accepts an object and returns a string by resolving any functions.</p>
 </dd>
-<dt><a href="#map">map(map, key)</a> ⇒ <code>Resolver</code> | <code>String</code></dt>
-<dd><p>The <code>map</code> function is for <em>mapping</em> keys to values.
-Given a <code>map</code> and a <code>key</code>, it will resolve to a value
-immediately (if possible), or return a function with may be passed an object
-to resolve later.</p>
-</dd>
 <dt><a href="#not">not(value)</a> ⇒ <code>Resolver</code> | <code>Boolean</code></dt>
 <dd><p>The <code>not</code> function is for resolving logical &quot;not&quot; of some
 <em>single condition</em>. Given <code>value</code>, <code>not</code> will
@@ -58,6 +52,12 @@ accepts a value to resolve later.</p>
 </dd>
 <dt><a href="#prop">prop(path)</a> ⇒ <code>Resolver</code></dt>
 <dd><p>Takes a path; returns a value-resolving function.</p>
+</dd>
+<dt><a href="#switchMap">switchMap(map, key)</a> ⇒ <code>Resolver</code> | <code>String</code></dt>
+<dd><p>The <code>switchMap</code> function is for <em>mapping</em> keys to values.
+Given a <code>map</code> and a <code>key</code>, it will resolve to a value
+immediately (if possible), or return a function with may be passed an object
+to resolve later.</p>
 </dd>
 <dt><a href="#tern">tern(a, b, test)</a> ⇒ <code>Resolver</code> | <code>String</code></dt>
 <dd><p>The <code>tern</code> function is for resolving some
@@ -156,22 +156,6 @@ accepts an object and returns a string by resolving any functions.
 | joiner | <code>String</code> | the string to join values with. |
 | ...values | <code>Resolver</code> \| <code>String</code> | The values to join together. |
 
-<a name="map"></a>
-
-## map(map, key) ⇒ <code>Resolver</code> \| <code>String</code>
-The <code>map</code> function is for <em>mapping</em> keys to values.
-Given a <code>map</code> and a <code>key</code>, it will resolve to a value
-immediately (if possible), or return a function with may be passed an object
-to resolve later.
-
-**Kind**: global function  
-**Returns**: <code>Resolver</code> \| <code>String</code> - A value or a resolver.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| map | <code>Object</code> | Maps values to values OR value-resolving funcs. |
-| key | <code>Resolver</code> \| <code>String</code> | Value or function that resolves to value. |
-
 <a name="not"></a>
 
 ## not(value) ⇒ <code>Resolver</code> \| <code>Boolean</code>
@@ -214,6 +198,22 @@ Takes a path; returns a value-resolving function.
 | Param | Type | Description |
 | --- | --- | --- |
 | path | <code>String</code> | A valid path in a props object. |
+
+<a name="switchMap"></a>
+
+## switchMap(map, key) ⇒ <code>Resolver</code> \| <code>String</code>
+The <code>switchMap</code> function is for <em>mapping</em> keys to values.
+Given a <code>map</code> and a <code>key</code>, it will resolve to a value
+immediately (if possible), or return a function with may be passed an object
+to resolve later.
+
+**Kind**: global function  
+**Returns**: <code>Resolver</code> \| <code>String</code> - A value or a resolver.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| map | <code>Object</code> | Maps values to values OR value-resolving funcs. |
+| key | <code>Resolver</code> \| <code>String</code> | Value or function that resolves to value. |
 
 <a name="tern"></a>
 
